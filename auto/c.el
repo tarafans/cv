@@ -2,6 +2,7 @@
  "c"
  (lambda ()
    (LaTeX-add-bibitems
+    "tsgx_ndss17"
     "quota_acsac16"
     "drk_ccs16"
     "drk_bh16"
