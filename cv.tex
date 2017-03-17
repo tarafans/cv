@@ -22,7 +22,7 @@
 
 % bibliography with multiple entries
 \usepackage{multibib}
-\newcites{c,j}{{Conference/Workshop Proceedings},{Journal Articles}}
+\newcites{c,j,p}{{Conference/Workshop Proceedings},{Journal Articles},{Patents}}
 
 
 \makeatletter
@@ -77,27 +77,11 @@ All aspects of computer security including system, web, mobile, and cloud
 
 \nocitej{*}
 \bibliographystylej{plainyr}
-\bibliographyj{j} 
+\bibliographyj{j}
 
-%\section{Patents}
-%\cventry{2013}
-%{Methods and apparatuses for providing DRM interoperability}
-%{Jong Kim, \myname, and Heejin Park}
-%{Registration, USA}
-%{8,386,799, February 2013}
-%{}
-%\cventry{2010}
-%{Method of distributing time of using contents between personal devices and system based on the same}
-%{\myname and Jong Kim}
-%{Registration, Korea, 10-0951792}
-%{April 2010}
-%{}
-%\cventry{2010}
-%{Method and apparatus for rights-preserving interoperability in DRM}
-%{Heejin Park, Jong Kim, and \myname}
-%{Registration, Korea, 10-0942992}
-%{February 2010}
-%{}
+\nocitep{*}
+\bibliographystylep{plainyr}
+\bibliographyp{p} 
 
 %\section{Projects}
 %\cventry{2015--Present}{THEIA: Tagging and Tracking of Multi-level Host Events for Transparent Computing and Assurance}{DARPA}{}{}{}{}
@@ -108,8 +92,9 @@ All aspects of computer security including system, web, mobile, and cloud
 %\cventry{2007--2008}{Survey on the sensors and industrial applications of USN}{SECUI.COM}{}{}{}{}
 %\cventry{2006}{Research on the detection rule optimization to improve IDS engine}{NSRI}{}{}{}{}
 
-\section{Awards}
-\cventry{2013}{Runner-up Prize}{Evaluation of ITRC Support Program}{}{}{}{}
+\section{Honors and Awards}
+\cventry{2017}{Postdoctoral Research Fellowship}{National Research Foundation of Korea (NRF)}{\$40,000}{}{}{}
+\cventry{2013}{Runner-up Prize}{Evaluation of ITRC Support Program}{\$1,000}{}{}{}
 
 \section{Professional Services}
 \subsection{Program Committee Member}
