@@ -9,6 +9,9 @@ all: $(MAIN).pdf
 $(MAIN).pdf: $(MAIN).tex $(SOURCES)
 	$(LATEXMK) -pdf $(MAIN).tex
 
+upload:
+	scp $(MAIN).pdf slee3036@killerbee1.cc.gatech.edu:~/www/
+
 clean:
 	$(LATEXMK) -C $(MAIN).tex
 	rm -f $(MAIN).synctex.gz
