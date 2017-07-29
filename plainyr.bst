@@ -222,6 +222,13 @@ FUNCTION {bold}
   if$
 }
 
+FUNCTION {mark}
+{ duplicate$ empty$
+    { pop$ "" }
+    { "* " swap$ * }
+  if$
+}
+
 FUNCTION {nline}
 { duplicate$ empty$
     { pop$ "" }
@@ -284,6 +291,13 @@ FUNCTION {format.title}
 { title empty$
     { "" }
     { title bold }
+  if$
+}
+
+FUNCTION {format.note}
+{ note empty$
+    { "" }
+    { note mark nline }
   if$
 }
 
@@ -741,7 +755,7 @@ FUNCTION {inproceedings}
     }
   if$
   new.block
-  note output
+  format.note "note" output.check
   fin.entry
 }
 
