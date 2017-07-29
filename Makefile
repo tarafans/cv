@@ -1,18 +1,25 @@
-LATEX=pdflatex
-LATEXMK=latexmk
-
 MAIN=cv
-SOURCES=$(MAIN).tex Makefile c.bib j.bib plainyr.bst
 
 all: $(MAIN).pdf
 
-$(MAIN).pdf: $(MAIN).tex $(SOURCES)
-	$(LATEXMK) -pdf $(MAIN).tex
+$(MAIN).pdf: rev.tex
+	pdflatex $(MAIN).tex
+	bibtex conf.aux
+	bibtex journal.aux
+	bibtex patent.aux
+	pdflatex $(MAIN).tex
+	pdflatex $(MAIN).tex
+
+rev.tex: FORCE
+	@printf '\\gdef\\therev{%s}\n\\gdef\\thedate{%s}\n' \
+	   "$(shell git rev-parse --short HEAD)"            \
+	   "$(shell git log -1 --format='%ci' HEAD)" > $@
 
 upload:
 	scp $(MAIN).pdf slee3036@killerbee1.cc.gatech.edu:~/www/
 
 clean:
-	$(LATEXMK) -C $(MAIN).tex
-	rm -f $(MAIN).synctex.gz
-	rm -rf *.fls $~ *.tmp *.bbl *.bak
+	rm -f *.out *.log *.aux *.pdf *.bbl *.blg
+
+.PHONY: clean FORCE
+

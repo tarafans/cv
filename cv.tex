@@ -1,158 +1,179 @@
-%% start of file `template.tex'.
-%
-%% Copyright 2006-2012 Xavier Danaux (xdanaux@gmail.com).
-%
-% This work may be distributed and/or modified under the
-% conditions of the LaTeX Project Public License version 1.3c,
-% available at http://www.latex-project.org/lppl/.
-
-
-\documentclass[11pt,letterpaper,sans]{moderncv}   % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
-
-% moderncv themes
-\moderncvstyle{classic}                        % style options are 'casual' (default) and 'classic' 
-\moderncvcolor{blue}                          % color options 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey' and 'black'
-
-% character encoding
-\usepackage[utf8]{inputenc}
-
-% adjust the page margins
-\usepackage[scale=0.75]{geometry}
-%\setlength{\hintscolumnwidth}{3cm}           % if you want to change the width of the column with the dates
-
-% bibliography with multiple entries
+\documentclass[10pt,letterpaper]{article}
+\usepackage[square,comma,numbers]{natbib}
 \usepackage{multibib}
-\newcites{c,j,p}{{Conference/Workshop Proceedings},{Journal Articles},{Patents}}
+\usepackage{xstring}
+
+\usepackage{amsmath}
+
+\usepackage{etoolbox}
+\BeforeBeginEnvironment{thebibliography}{%
+  \let\origsection\section% save the original definition of \section
+  \let\section\subsection%  make \section behave like \subsection
+}
+\AfterEndEnvironment{thebibliography}{%
+  \let\section\origsection% restore the original definition of \section
+}
 
 
-\makeatletter
-\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}
-\makeatother
+%\usepackage{hyperref}
+%\usepackage[hidelinks]{hyperref}
+\usepackage{color,hyperref}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.3}
+\definecolor{myblue}{rgb}{0.0,0.0,1.0}
+\definecolor{pink}{rgb}{1.0,0.1,0.8}
+\hypersetup{colorlinks,breaklinks,linkcolor=blue,
+  urlcolor=magenta,anchorcolor=magenta,citecolor=myblue}
+\usepackage{enumitem}
+\setlist[description]{
+  leftmargin=\parindent,
+  labelindent=0.3cm,
+  itemsep=1pt,
+  %parsep=0pt,
+  topsep=0pt,
+}
 
-% personal data
-\firstname{Sangho}
-\familyname{Lee}
-\address{Room 3138, Klaus Advanced Computing Building}{266 Ferst Dr NW, Atlanta GA 30332-0765}
-%\mobile{(678) 469 6810}
-\email{sangho@gatech.edu}                          % optional, remove the line if not wanted
-\homepage{http://www.cc.gatech.edu/$\sim$slee3036} % The first argument is the url for the clickable link, the second argument is the url displayed in the template - this allows special characters to be displayed such as the tilde in this example
-%\photo[64pt][0.4pt]{picture.jpg}                  % '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file; optional, remove the line if not wanted
+\newcites{conf,journal,patent}{Referred Conference Proceedings, Journal Articles, Granted Patents}
+
+% \usepackage[colorlinks=false]{hyperref}  
+\usepackage{geometry}
+%\hypersetup{colorlinks=true}
+%\usepackage[none]{hyphenat}
+
+% Set your name here
+\def\name{\textsc{Sangho Lee}}
+
+% The following metadata will show up in the PDF properties
+\hypersetup{
+  colorlinks = true,
+  % urlcolor = black,
+  pdfauthor = {\name},
+  pdfkeywords = { Sangho Lee, CV},
+  pdftitle = {\name: Curriculum Vitae},
+  pdfsubject = {Curriculum Vitae},
+  pdfpagemode = UseNone
+}
+
+\geometry{
+  body={6.5in, 9.0in},
+  left=1.0in,
+  top=1.0in
+}
+
+% highlight myname in bibliography
+\def\FormatName#1{%
+  \def\myname{Sangho Lee}%
+  \edef\name{#1}%
+  \ifx\name\myname
+    \underline{#1}%
+  \else
+    #1%
+  \fi
+}
+
+% insert newline between bib items
+\def\FormatRET{%
+  \\%
+}
+
+% bold paper titles in bibliography
+\def\FormatTitle#1{%
+  \textbf{#1}%
+}
+
+% highlight awards.
+\def\FormatNote#1{%
+  #1%
+}
+
+% Customize page headers
+% \pagestyle{myheadings}
+% \markright{\name}
+\thispagestyle{empty}
+
+% Custom section fonts
+\usepackage{sectsty}
+% \sectionfont{\rmfamily\mdseries\Large}
+% \subsectionfont{\rmfamily\mdseries\itshape\large}
+
+% \sectionfont{\rmfamily\mdseries\Large\textbf}
+% \subsectionfont{\rmfamily\mdseries\large\textbf}
+
+% Other possible font commands include:
+% \ttfamily for teletype,
+% \sffamily for sans serif,
+% \bfseries for bold,
+% \scshape for small caps,
+% \normalsize, \large, \Large, \LARGE sizes.
+
+% Don't indent paragraphs.
+\setlength\parindent{0em}
+
+% Make lists without bullets and compact spacing
+\renewenvironment{itemize}{
+  \begin{list}{}{
+    \setlength{\leftmargin}{3.5em}
+    \setlength{\itemsep}{0.25em}
+    \setlength{\parskip}{0pt}
+    \setlength{\parsep}{0.25em}
+  }
+}{
+  \end{list}
+}
+
+% bib heading: References -> Publication
+\renewcommand{\refname}{Publication}
+
+% customize the \section command
+\usepackage{titlesec} 
+\titleformat{\section}{\Large\scshape\raggedright}{}{0em}{}[\titlerule] % Text formatting of sections
+% \titlespacing{\section}{0pt}{3pt}{3pt} % Spacing around sections
 
 
-%----------------------------------------------------------------------------------
-%            content
-%----------------------------------------------------------------------------------
 \begin{document}
-\maketitle
 
-\section{Employment}
-\cventry{2015/11--Present}{Postdoctoral Fellow}{Georgia Institute of Technology}{Atlanta, GA, USA}{}{ Advisors: Prof. Wenke Lee and Prof. Taesoo Kim }
-\cventry{2013/3--2015/10}{Post-doctoral Research Associate}{Pohang University of Science and Technology (POSTECH)}{Pohang, South Korea}{}{Advisor: Prof. Jong Kim}
-\cventry{2006/3--2013/2}{Research Assistant}{POSTECH}{Pohang, South Korea}{}{Advisor: Prof. Jong Kim}
+% Place name at left
+{\huge \name}
 
-\section{Research Interests}
-All aspects of computer security including system, web, mobile, and cloud
+% Alternatively, print name centered and bold:
+%\centerline{\huge \bf \name}
 
-\section{Education}
+\vspace{0.15in}
 
-\cventry{2008--2013}{Ph.D. in Computer Science and Engineering}{POSTECH}{Pohang, South Korea}{}{
-\begin{itemize}
-\item {Detection and Prevention of Web Security Attacks Exploiting URL Redirection}
-\end{itemize}
-}
-\cventry{2006--2008}{M.S. in Computer Science and Engineering}{POSTECH}{Pohang, South Korea}{}{
-\begin{itemize}
-\item {Redistributing Time-based Rights for Content Sharing in DRM}
-\end{itemize}    
-}
-\cventry{2002--2006}{B.S. in Computer Engineering}{Hongik University}{Seoul, South Korea}{}{}
+\begin{minipage}[t]{0.45\textwidth}
+  Postdoctoral Fellow\\
+  School of Computer Science\\
+  Georgia Institute of Technology\\
+  Room 3138, 266 Ferst Dr NW\\
+  Atlanta, GA 30332-0765
+\end{minipage}
+\begin{minipage}[t]{0.45\textwidth}
+  Phone: (678) 469-6810\\
+  Email: \texttt{sangho@gatech.edu} \\
+  Web: \url{https://cc.gatech.edu/~slee3036} \\
+\end{minipage}
 
-\section{Referred Publications}
+\input{employment}
+\input{education}
+\input{research-interest}
+\input{publication}
+\input{award}
+\input{activity}
+\input{invited-talk}
+\input{open-source}
+% \input{teaching}
 
-\nocitec{*}
-\bibliographystylec{plainyr}
-\bibliographyc{c}
-
-% \clearpage
-
-\nocitej{*}
-\bibliographystylej{plainyr}
-\bibliographyj{j}
-
-\nocitep{*}
-\bibliographystylep{plainyr}
-\bibliographyp{p} 
-
-%\section{Projects}
-%\cventry{2015--Present}{THEIA: Tagging and Tracking of Multi-level Host Events for Transparent Computing and Assurance}{DARPA}{}{}{}{}
-%\cventry{2010--2011}{Research on the context-aware privacy protection platform for mobile devices}{ITRC-CMEST}{}{}{}{}
-%\cventry{2010--2011}{Research on the vulnerabilities of smart TVs}{Samsung Electronics}{}{}{}{}
-%\cventry{2006--2009}{Research on the DRM middleware for mobile devices}{ITRC-CMEST}{}{}{}{}
-%\cventry{2007--2008}{Research on the security of IPTV systems}{Contron and Alticast}{}{}{}{}
-%\cventry{2007--2008}{Survey on the sensors and industrial applications of USN}{SECUI.COM}{}{}{}{}
-%\cventry{2006}{Research on the detection rule optimization to improve IDS engine}{NSRI}{}{}{}{}
-
-\section{Honors and Awards}
-\cventry{2017}{Postdoctoral Research Fellowship}{National Research Foundation of Korea (NRF)}{\$40,000}{}{}{}
-\cventry{2013}{Runner-up Prize}{Evaluation of ITRC Support Program}{\$1,000}{}{}{}
-
-\section{Professional Services}
-\subsection{Program Committee Member}
-\cventry{}{Annual Computer Security Applications Conference (ACSAC)}{2017, 2016}{}{}{}
-\subsection{Journal Reviewer}
-\cventry{}{ACM Transactions on Privacy and Security (TOPS)}{2016}{}{}{}
-\cventry{}{IEEE Transactions on Dependable and Secure Computing (TDSC)}{2014, 2009}{}{}{}
-\cventry{}{IEEE Transactions on Computational Social Systems (TCSS)}{2017}{}{}{}
-\cventry{}{IEEE Communications Letters}{2016, 2013, 2010}{}{}{}
-\cventry{}{Security and Communication Networks (SCN)}{2011}{}{}{}
-\cventry{}{Journal of Computing Science and Engineering (JCSE)}{2015, 2014}{}{}{}
-%% \subsection{External Reviewer}
-%% \cventry{}{Network and Distributed System Security Symposium (NDSS)}{2016, 2013}{}{}{}
-%% \cventry{}{USENIX Security Symposium (Security)}{2017}{}{}{}
-%% \cventry{}{IEEE International Conference on Distributed Computing Systems (ICDCS)}{2017, 2013}{}{}{}
-%% \cventry{}{International World Wide Web Conference (WWW)}{2013}{}{}{}
-%% \cventry{}{Design Automation Conference (DAC)}{2017}{}{}{}
-%% \cventry{}{Workshop on System Software for Trusted Execution (SysTEX)}{2016}{}{}{}
-%% \cventry{}{International Workshop on Information Security Applications (WISA)}{2014, 2013}{}{}{}
-%% \cventry{}{ACM Transactions on Embedded Computing}{}{}{}{}
-%% \cventry{}{Information Sciences}{}{}{}{}
-
-\section{Invited Talks}
-\cventry{2017}{Practical Concolic Testing Techniques for COTS Operating Systems}{}{Korea University, Seoul, South Korea}{July 3, 2017}{}
-\cventry{2017}{Practical Concolic Testing Techniques for COTS Operating Systems}{}{KAIST, Daejeon, South Korea}{June 29, 2017}{}
-\cventry{2017}{Practical Concolic Testing Techniques for COTS Operating Systems}{}{POSTECH, Pohang, South Korea}{June 28, 2017}{}
-\cventry{2017}{Inferring Fine-grained Control Flow Inside SGX Enclaves with Branch Shadowing}{}{Intel, Hillsboro, Oregon, USA}{February 24, 2017}{}
-\cventry{2015}{Detection of Suspicious URLs with Conditional Redirection}{}{ETRI, Daejeon, South Korea}{March 17, 2015}{}
-\cventry{2015}{Privacy Leakage from GPU Exploits}{}{KAIST, Daejeon, South Korea}{March 10, 2015}{}
-%% \cventry{2015}{Identifying Cross-origin Resource Status Using Application Cache}{22nd Network and Distributed System Security Symposium (NDSS)}{San Diego, California, USA}{February 9, 2015}{}
-\cventry{2015}{Web and Browser Security: Attack and Defense}{}{UNIST, Ulsan, South Korea}{January 21, 2015}{}
-%% \cventry{2014}{Stealing Webpages Rendered on Your Browser by Exploiting GPU Vulnerabilities}{35th IEEE Symposium on Security and Privacy (Oakland)}{San Jose, California, USA}{May 19, 2014}{}
-\cventry{2013}{Spam and Browsing Privacy Problems on Twitter}{}{KAIST, Daejeon, South Korea}{May 27, 2013}{}
-%% \cventry{2012}{WarningBird: Detecting Suspicious URLs in Twitter Stream}{19th Network and Distributed System Security Symposium (NDSS)}{San Diego, California, USA}{February 8, 2012}{}
-%% \cventry{2011}{A Batch Rekeying Time Decision Algorithm for IPTV Systems}{8th IEEE Consumer Communications and Networking Conference (CCNC)}{Las Vegas, Nevada, USA}{January 11, 2011}{}
-%% \cventry{2010}{A Secure and Mutual-profitable DRM Interoperability Scheme}{15th IEEE Symposium on Computers and Communications (ISCC)}{Riccione, Italy}{June 22, 2010}{}
-
-% \section{References}
-% \cventry{}{Jong Kim}{Professor}{Department of Computer Science and Engineering}{POSTECH}{}
-% \cventry{}{Taesoo Kim}{Assistant Professor}{College of Computing}{Georgia Institute of Technology}{}
-% \cventry{}{Wenke Lee}{Professor}{College of Computing}{Georgia Institute of Technology}{}
-% \cventry{}{Marcus Peinado}{Architect}{}{Microsoft Research}{}
-% \cventry{}{Jangwoo Kim}{Associate Professor}{Department of Electrical and Computer Engineering}{Seoul National University}{}
-
-%\begin{minipage}[t]{.4\textwidth}
-%\end{minipage}\\[2em]
-
-\section{Open Source Contribution}
-\cventry{2017}{T-SGX}{}{LLVM backend and frontend for securing SGX enclaves from controlled-channel attacks~\cite{tsgx_ndss17}}{\url{https://github.com/sslab-gatech/t-sgx}}{}
-\cventry{2016}{DrK}{}{PoC of TSX-based KASLR de-randomization attack~\cite{drk_ccs16,drk_bh16}}{\url{https://github.com/sslab-gatech/DrK}}{}
-
-\bigskip
+% \input{reference}
+% \input{other}
 
 % Footer
+
 \begin{center}
-  \begin{footnotesize}
-    Last updated: \today \\
-  \end{footnotesize}
+  \begin{small}
+    Last updated: \today
+  \end{small}
 \end{center}
 
 \end{document}
+
+
+
