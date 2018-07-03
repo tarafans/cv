@@ -34,7 +34,7 @@
   topsep=0pt,
 }
 
-\newcites{conf,journal,patent}{Conference Proceedings, Journal Articles, Granted Patents}
+\newcites{conf}{Conference Proceedings}
 
 % \usepackage[colorlinks=false]{hyperref}  
 \usepackage{geometry}
@@ -42,14 +42,14 @@
 %\usepackage[none]{hyphenat}
 
 % Set your name here
-\def\name{\textsc{Sangho Lee}}
+\def\name{\textsc{Wen Xu}}
 
 % The following metadata will show up in the PDF properties
 \hypersetup{
   colorlinks = true,
   % urlcolor = black,
   pdfauthor = {\name},
-  pdfkeywords = { Sangho Lee, CV},
+  pdfkeywords = { Wen Xu, CV},
   pdftitle = {\name: Curriculum Vitae},
   pdfsubject = {Curriculum Vitae},
   pdfpagemode = UseNone
@@ -63,7 +63,7 @@
 
 % highlight myname in bibliography
 \def\FormatName#1{%
-  \def\myname{Sangho Lee}%
+  \def\myname{Wen Xu}%
   \edef\name{#1}%
   \ifx\name\myname
     \underline{#1}%
@@ -149,10 +149,11 @@
 \input{research-interest}
 \input{publication}
 \input{award}
+\input{cve}
 \input{activity}
 \input{invited-talk}
-\input{open-source}
-% \input{teaching}
+% \input{open-source}
+\input{teaching}
 
 % \input{reference}
 % \input{other}

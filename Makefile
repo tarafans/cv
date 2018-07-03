@@ -5,8 +5,6 @@ all: $(MAIN).pdf
 $(MAIN).pdf: rev.tex
 	pdflatex $(MAIN).tex
 	bibtex conf.aux
-	bibtex journal.aux
-	bibtex patent.aux
 	pdflatex $(MAIN).tex
 	pdflatex $(MAIN).tex
 
